@@ -1,0 +1,9 @@
+POST localhost:8080/hello?param=google
+
+### Actuator
+GET http://localhost:8080/actuator/health/readiness
+
+
+### Person Request
+
+#GET http://localhost:8080/test

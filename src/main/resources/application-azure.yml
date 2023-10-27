@@ -1,0 +1,33 @@
+spring:
+  cloud:
+    azure:
+      credential:
+        client-id: ${AZURE_CLIENT_ID}
+        client-secret: ${AZURE_CLIENT_SECRET}
+      profile:
+        tenant-id: ${AZURE_TENANT_ID}
+        subscription-id: "b34e14aa-24c5-498f-afbf-ba1d0ea2309a"
+      servicebus:
+        enabled: true
+        entity-type: topic
+        resource:
+          resource-group: rg-rndde-storage-dev
+        namespace: ${SERVICEBUS_NAMESPACE}
+#      eventhubs:
+#        kafka:
+#          enabled: "false"
+    stream:
+      function.definition: consume
+      bindings:
+        consume-in-0.destination: topic0
+        consume-in-0.group: sub0
+        hello-out-0.destination: topic0
+      servicebus:
+        bindings:
+          consume-in-0.consumer.auto-complete: false
+          hello-out-0.producer.entity-type: topic
+      default-binder: servicebus
+management:
+  health:
+    rabbit:
+      enabled: false
