@@ -8,14 +8,18 @@ spring:
         tenant-id: ${AZURE_TENANT_ID}
         subscription-id: "b34e14aa-24c5-498f-afbf-ba1d0ea2309a"
       servicebus:
+        producer:
+          entity-type: topic
+        consumer:
+          entity-type: topic
         enabled: true
         entity-type: topic
         resource:
           resource-group: rg-rndde-storage-dev
         namespace: ${SERVICEBUS_NAMESPACE}
-#      eventhubs:
-#        kafka:
-#          enabled: "false"
+      eventhubs:
+        kafka:
+          enabled: "false"
     stream:
       function.definition: consume
       bindings:
@@ -26,6 +30,7 @@ spring:
         bindings:
           consume-in-0.consumer.auto-complete: false
           hello-out-0.producer.entity-type: topic
+          #consume-in-0.consumer.entity-type: topic
       default-binder: servicebus
 management:
   health:
